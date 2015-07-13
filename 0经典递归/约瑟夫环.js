@@ -4,5 +4,5 @@
 
 function ysf(n,M){
 	if(n == 1) return 0;
-	return (ysf(n-1) + M) % n
+	return (ysf(n-1,M) + M) % n
 }
