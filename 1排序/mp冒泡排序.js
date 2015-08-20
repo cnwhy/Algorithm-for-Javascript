@@ -11,5 +11,4 @@ function mppx(arr) {
     return arr;
 }
 
-var log = console.log
-log(mppx([1,0,2,2,1,3,6,4]))
+console.log(mppx([1,0,2,2,1,3,6,4]))

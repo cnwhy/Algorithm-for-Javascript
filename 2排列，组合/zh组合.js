@@ -23,7 +23,9 @@ function zuhe(arr,n,sarr){
     return zh;
 }
 
-var log = console.log;
-log(zuhe([1, 2, 3, 4], 3));
-log(zuhe([4,2,2,2,3,3,1], 2));
+var arr1 = [1, 2, 3, 4]
+    ,arr2 = [4,2,2,2,3,3,1]
+console.log(arr1,3)
+console.log(zuhe(arr1, 3));
+console.log(zuhe(arr2, 3));
 

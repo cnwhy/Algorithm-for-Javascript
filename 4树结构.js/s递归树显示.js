@@ -29,14 +29,23 @@ var data = [
 	{id:12,pid:4,name:"name12"},
 	{id:11,pid:8,name:"name13"},
 ]
+var tree = {}
 
-function showtree(data,pid,temp){
-	var S = ['┌','│','├','└','─',' ','┬']; //某些情况 适用全角空格
+tree.config = {
+	id : 'id',
+	pid : 'pid',
+	placeholders : ['┌','│','├','└','─',' ','┬']
+}
+
+tree.showtree = function(data,pid,temp){
+	var S = this.config.placeholders; //某些情况 适用全角空格
+	var k_id = this.config.id 
+		,k_pid = this.config.pid;
 	var arr = [],str = '';
 	pid = pid || 0;
 	temp = temp || '';
 	for(var k in data){
-		if(data[k].pid == pid) arr.push(data[k]);
+		if(data[k][k_pid] == pid) arr.push(data[k]);
 	}
 	for(var i = 0 , n = arr.length; i<n ; i++){
 		var tr = arr[i];
@@ -54,13 +63,13 @@ function showtree(data,pid,temp){
         	}
         	zwf += i == n-1 ? S[3] : i == 0 ? S[0] : S[2];
         }
-        var z_str = showtree(data,tr.id,zwf);
+        var z_str = this.showtree(data,tr[k_id],zwf);
         str += zwf + (z_str ?  S[6] : S[4]) + tr.name + "\n"
         str += z_str;
 	}
 	return str;
 }
 
-console.log(showtree(data,0))
-console.log(showtree(data,1))
-console.log(showtree(data,3))
+console.log(tree.showtree(data,0))
+console.log(tree.showtree(data,1))
+console.log(tree.showtree(data,3))

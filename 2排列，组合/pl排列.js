@@ -11,13 +11,12 @@ function permutation(arr, left) {
             _s = _arr[i],
             _l = left + "" + _s;
         _arr.splice(i, 1)
-        if (pass.indexOf(_s) != -1) continue;
+        if (pass.indexOf(_s) != -1) continue; //去重
         pass.push(_s)
         //console.log(_arr,_l,pass.join());
         pl = pl.concat(permutation(_arr, _l))
     }
     return pl;
 }
-var log = console.log;
-log(permutation([1,2,3]))
-log(permutation([1,2,1]))
+console.log(permutation([1,2,3]))
+console.log(permutation([1,2,1]))
