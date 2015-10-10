@@ -29,14 +29,13 @@ var data = [
 	{id:12,pid:4,name:"name12"},
 	{id:11,pid:8,name:"name13"},
 ]
-var tree = {}
 
+var tree = {}
 tree.config = {
 	id : 'id',
 	pid : 'pid',
 	placeholders : ['┌','│','├','└','─',' ','┬']
 }
-
 tree.showtree = function(data,pid,temp){
 	var S = this.config.placeholders; //某些情况 适用全角空格
 	var k_id = this.config.id 
