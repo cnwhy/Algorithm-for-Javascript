@@ -48,7 +48,7 @@ function yhsj_dd(x){
 function yhsj_dd(x,y){
 	var arr=[]
 		,temparr = [1];
-	y = y > Math.ceil(x/2) ? x-y+1 : y;
+	//y = y > Math.ceil(x/2) ? x-y+1 : y; //利用对称性质
 	//console.log(y);
 	var _temp = y - x;
 	for(var i=0;i<x;i++){
