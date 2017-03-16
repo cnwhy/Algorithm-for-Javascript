@@ -69,23 +69,15 @@ function fn_filterKey(maps){
  * @param {any} json 
  * @param {any} n 
  * @param {any} maps 
- * @param {any} p 
+ * @param {any} p 反回模式 0:无要求 1:要i 2:要val
  * @returns 
 * */
-function re_any(json,n,maps,p){
-	var maps_nonext,nonext,isnomext,ismap;
 
-	var mark_code;
-	for(n; n<json.length; n++){
-		var code = json.charCodeAt(n);
-		if(!utils.isEmptChar(code)){
-			mark_code = code;
-			break;
-		}
-	}
-	
+function re_any(json,n,maps,p){
+	var re;
+	var maps_nonext,nonext,isnomext,ismap;
 	if(maps){
-		maps_nonext = [];
+		maps_nonext = []; //取一层path的对像
 		for(var i=0; i<maps.length;){
 			var map = maps[i];
 			if(map.map.length === 0){
@@ -95,59 +87,73 @@ function re_any(json,n,maps,p){
 				i++;
 			}
 		}
-		ismap = maps && maps.length >0;
-		isnomext = maps_nonext && maps_nonext.length > 0;
+		ismap = maps.length > 0; //是否还有下一层
+		isnomext = maps_nonext.length > 0; //这一层是否要取值
 		if(!ismap && !isnomext && !p){
-			return -1;
+			return;
 		}
 		nonext = (function(on){
 			if(!isnomext) return function(){};
-			return function(n){
-				var str = json.substring(on,n+1);
-				// var val = str;
-				var val = utils.runEval(str);
-				// var val = JSON.parse(str);
+			return function(re){
 				maps_nonext.forEach(function(v){
-					v.val = val;
+					v.val = re[1];
 				})
 			}
 		})(n)
 	}
-	var nextp = p || isnomext;
+	var nextp;  //下一层的取值模式情况
+	if(p >= 2 || isnomext){
+		nextp = 2;
+	}else{
+		nextp = p ? 1 : 0;
+	}
+	
 	var on = n;
+	var mark_code;
+	for(n; n<json.length; n++){
+		var code = json.charCodeAt(n);
+		if(!utils.isEmptChar(code)){
+			mark_code = code;
+			break;
+		}
+	}
 	if(mark_code === utils.CODE.S){
-		n = utils.re_string(json,n);
+		re = utils.re_string(json,n,null,nextp == 2);
 	}else if(mark_code === utils.CODE.A_S){
-		n = re_array(json,n,maps,nextp)
+		re = re_array(json,n,maps,nextp)
 		// n = re_array(json,n,maps)
 	}else if(mark_code === utils.CODE.O_S){
-		n = re_json(json,n,maps,nextp)
-		// n = re_json(json,n,maps)
-	}else if(utils.isNumberChar(mark_code)){
-		n = utils.re_number(json,n)
+		re = re_object(json,n,maps,nextp)
+		// n = re_object(json,n,maps)
+	}else if(utils.isNumberCharFirst(mark_code)){
+		re = utils.re_number(json,n,nextp == 2)
 	}else{
-		n = utils.re_other(json,n)
+		re = utils.re_other(json,n,nextp == 2)
 	}
-	nonext && nonext(n);
+	nonext && nonext(re);
 	// global.MK += 1;
-	return n;
+	return re;
 }
 
-function re_json(json,n,maps,p){
+function re_object(json,n,maps,p){
 	var mark = 0,key;
+	var re_val = p == 2 ? {} : undefined;
 	var filterKey = fn_filterKey(maps);
 	for(n++; n<json.length; n++){
 		var code = json.charCodeAt(n);
 		if(utils.isEmptChar(code)) continue;
 		if(mark === 0 || mark === 3){
-			if(code === utils.CODE.O_E) return n; //对像结束;
+			if(code === utils.CODE.O_E) return [n,re_val]; //对像结束;
 		}
 		if(mark === 0 || mark === 4){
 			if(code !== utils.CODE.S) throw new Error("JSON 格式错误,"+n+"字符期望`\"`结果为:",String.fromCharCode(code));
 			var on = n;
-			n = utils.re_string(json,n);
+			var restr = utils.re_string(json,n,null,true)
+			n = restr[0]
+			key = restr[1]
+			// n = utils.re_string(json,n)[0];
 			// key = json.substring(on+1,n);
-			key = utils.getString(json.substring(on+1,n));
+			// key = utils.getString(json.substring(on+1,n));
 			// key = utils.runEval(json.substring(on,n+1));
 			mark = 1;
 		}else if(mark === 1){
@@ -156,8 +162,11 @@ function re_json(json,n,maps,p){
 		}else if(mark === 2){
 			// var _maps = filterKey(key);
 			var _obj = filterKey(key);
-			n = re_any(json,n,_obj.maps,p || _obj.mark);
-			if(!_obj.mark && !p) return;
+			var nextp = p == 2 ? 2 : _obj.mark ? 1 : p;
+			var reany = re_any(json,n,_obj.maps,nextp);
+			n = reany[0]
+			if(!_obj.mark && !p) return [];
+			if(re_val) re_val[key] = reany[1];
 			mark = 3;
 		}else if(mark === 3){
 			if(code !== utils.CODE.SP) throw new Error("JSON 格式错误,"+n+"字符期望`,`结果为:",String.fromCharCode(code));
@@ -168,17 +177,22 @@ function re_json(json,n,maps,p){
 
 function re_array(json,n,maps,p){
 	var i = 0,mark=0;
+	var re_val = p == 2 ? [] : undefined;
 	var filterKey = fn_filterKey(maps);
 	for(n++; n<json.length; n++){
 		var code = json.charCodeAt(n);
 		if(utils.isEmptChar(code)) continue;
 		if(mark === 0 || mark === 1){
-			if(code === utils.CODE.A_E) return n; //数组结束;
+			if(code === utils.CODE.A_E) return [n,re_val]; //数组结束;
 		}
 		if(mark === 0 || mark === 2){
 			var _obj = filterKey(i);
-			n = re_any(json,n,_obj.maps,p || _obj.mark);
-			if(!_obj.mark && !p) return;
+			var nextp = p == 2 ? 2 : _obj.mark ? 1 : p;
+			var re = re_any(json,n,_obj.maps,nextp);
+			// if(!re) console.log(n,_obj.maps,nextp);
+			n = re[0]
+			if(!_obj.mark && !p) return [];
+			if(re_val) re_val.push(re[1]);
 			mark = 1;
 		}else if(mark === 1){
 			if(code !== utils.CODE.SP) throw new Error("JSON 格式错误,"+n+"字符期望`,`结果为:",char);

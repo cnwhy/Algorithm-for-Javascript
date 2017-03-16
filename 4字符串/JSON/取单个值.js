@@ -50,15 +50,15 @@ function re_any(json,n){
 		}
 	}
 	if(type_mark === utils.CODE.S){
-		n = utils.re_string(json,n);
+		n = utils.re_string(json,n)[0];
 	}else if(type_mark === utils.CODE.A_S){
 		n = re_array(json,n)
 	}else if(type_mark === utils.CODE.O_S){
 		n = re_json(json,n)
 	}else if(utils.isNumberChar(type_mark)){
-		n = utils.re_number(json,n)
+		n = utils.re_number(json,n)[0]
 	}else{
-		n = utils.re_other(json,n)
+		n = utils.re_other(json,n)[0]
 	}
 	return n;
 }
@@ -82,7 +82,7 @@ function re_json(json,n,cb){
 		if(isKey === 0 || isKey === 4){
 			if(char !== utils.CODE.S) throw new Error("JSON 格式错误,"+n+"字符期望`\"`结果为:",String.fromCharCode(char));
 			var on = n;
-			n = utils.re_string(json,n);
+			n = utils.re_string(json,n)[0];
 			// key = json.substring(on+1,n);
 			key = utils.getString(json.substring(on+1,n));
 			// key = utils.runEval(json.substring(on,n+1));
