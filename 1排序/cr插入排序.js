@@ -7,7 +7,7 @@ function push_2f(arr, fun) {
         return a < b;
     }
     var fun2f = function(a, b) {
-        return a + Math.floor((b - a) / 2)
+        return Math.floor((a + b) / 2)
     }
     for (var i = 1; i < l; i++) {
         var v = arr[i]
