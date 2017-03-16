@@ -1,0 +1,883 @@
+{
+	"code": 0,
+	"msg": null,
+	"data": {
+		"config_data": {
+			"base": [
+				{
+					"cate_id": "6",
+					"type": "1",
+					"rule": "img_wallpaper",
+					"ename": "tp_wallpaper",
+					"cname": "壁纸",
+					"def_url": "/upload/default/theme_default/wallpaper/tp_wallpaper.jpg",
+					"url": "",
+					"position": 1
+				},
+				{
+					"cate_id": "7",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_camera",
+					"cname": "相机",
+					"def_url": "/upload/default/theme_default/icons/tp_camera.png",
+					"url": "",
+					"position": 1
+				},
+				{
+					"cate_id": "7",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_gallery",
+					"cname": "图库",
+					"def_url": "/upload/default/theme_default/icons/tp_gallery.png",
+					"url": "",
+					"position": 2
+				},
+				{
+					"cate_id": "7",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_music",
+					"cname": "音乐",
+					"def_url": "/upload/default/theme_default/icons/tp_music.png",
+					"url": "",
+					"position": 3
+				},
+				{
+					"cate_id": "7",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_calculator",
+					"cname": "计算器",
+					"def_url": "/upload/default/theme_default/icons/tp_calculator.png",
+					"url": "",
+					"position": 4
+				},
+				{
+					"cate_id": "7",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_setting",
+					"cname": "设置",
+					"def_url": "/upload/default/theme_default/icons/tp_setting.png",
+					"url": "",
+					"position": 5
+				},
+				{
+					"cate_id": "7",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_clock",
+					"cname": "时钟",
+					"def_url": "/upload/default/theme_default/icons/tp_clock.png",
+					"url": "",
+					"position": 6
+				},
+				{
+					"cate_id": "7",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_calendar",
+					"cname": "日历",
+					"def_url": "/upload/default/theme_default/icons/tp_calendar.png",
+					"url": "",
+					"position": 7
+				},
+				{
+					"cate_id": "7",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_email",
+					"cname": "邮箱",
+					"def_url": "/upload/default/theme_default/icons/tp_email.png",
+					"url": "",
+					"position": 8
+				},
+				{
+					"cate_id": "7",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_dial",
+					"cname": "电话",
+					"def_url": "/upload/default/theme_default/icons/tp_dial.png",
+					"url": "",
+					"position": 9
+				},
+				{
+					"cate_id": "7",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_contacts",
+					"cname": "联系人",
+					"def_url": "/upload/default/theme_default/icons/tp_contacts.png",
+					"url": "",
+					"position": 10
+				},
+				{
+					"cate_id": "7",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_tcl_launcher_allapp",
+					"cname": "全部应用",
+					"def_url": "/upload/default/theme_default/icons/tp_tcl_launcher_allapp.png",
+					"url": "",
+					"position": 11
+				},
+				{
+					"cate_id": "7",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_browser",
+					"cname": "浏览器",
+					"def_url": "/upload/default/theme_default/icons/tp_browser.png",
+					"url": "",
+					"position": 12
+				},
+				{
+					"cate_id": "7",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_mms",
+					"cname": "短信",
+					"def_url": "/upload/default/theme_default/icons/tp_mms.png",
+					"url": "",
+					"position": 13
+				},
+				{
+					"cate_id": "7",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_radio",
+					"cname": "收音机",
+					"def_url": "/upload/default/theme_default/icons/tp_radio.png",
+					"url": "",
+					"position": 14
+				},
+				{
+					"cate_id": "7",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_recorder",
+					"cname": "录音机",
+					"def_url": "/upload/default/theme_default/icons/tp_recorder.png",
+					"url": "",
+					"position": 15
+				},
+				{
+					"cate_id": "7",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_download",
+					"cname": "下载",
+					"def_url": "/upload/default/theme_default/icons/tp_download.png",
+					"url": "",
+					"position": 16
+				},
+				{
+					"cate_id": "7",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_file_explorer",
+					"cname": "文件管理",
+					"def_url": "/upload/default/theme_default/icons/tp_file_explorer.png",
+					"url": "",
+					"position": 17
+				},
+				{
+					"cate_id": "7",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_compass",
+					"cname": "指南针",
+					"def_url": "/upload/default/theme_default/icons/tp_compass.png",
+					"url": "",
+					"position": 18
+				},
+				{
+					"cate_id": "7",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_weather",
+					"cname": "天气",
+					"def_url": "/upload/default/theme_default/icons/tp_weather.png",
+					"url": "",
+					"position": 19
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_tcl_app_center",
+					"cname": "应用商店",
+					"def_url": "/upload/default/theme_default/icons/tp_tcl_app_center.png",
+					"url": "",
+					"position": 1
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_tcl_game_center",
+					"cname": "游戏中心",
+					"def_url": "/upload/default/theme_default/icons/tp_tcl_game_center.png",
+					"url": "",
+					"position": 3
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_tcl_user_care",
+					"cname": "用户服务",
+					"def_url": "/upload/default/theme_default/icons/tp_tcl_user_care.png",
+					"url": "",
+					"position": 4
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_tcl_space_plus",
+					"cname": "space+",
+					"def_url": "/upload/default/theme_default/icons/tp_tcl_space_plus.png",
+					"url": "",
+					"position": 5
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_tcl_theme_store",
+					"cname": "主题商店",
+					"def_url": "/upload/default/theme_default/icons/tp_tcl_theme_store.png",
+					"url": "",
+					"position": 6
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_tcl_security",
+					"cname": "杀毒软件",
+					"def_url": "/upload/default/theme_default/icons/tp_tcl_security.png",
+					"url": "",
+					"position": 8
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_tcl_onetouch_cloud",
+					"cname": "云服务",
+					"def_url": "/upload/default/theme_default/icons/tp_tcl_onetouch_cloud.png",
+					"url": "",
+					"position": 9
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_tcl_color_catcher",
+					"cname": "用户自定义主题工具",
+					"def_url": "/upload/default/theme_default/icons/tp_tcl_color_catcher.png",
+					"url": "",
+					"position": 10
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_tcl_colorkey",
+					"cname": "输入法",
+					"def_url": "/upload/default/theme_default/icons/tp_tcl_colorkey.png",
+					"url": "",
+					"position": 11
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_tcl_funday",
+					"cname": "小视频",
+					"def_url": "/upload/default/theme_default/icons/tp_tcl_funday.png",
+					"url": "",
+					"position": 12
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_tcl_airshare",
+					"cname": "WI-FI传输应用",
+					"def_url": "/upload/default/theme_default/icons/tp_tcl_airshare.png",
+					"url": "",
+					"position": 13
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_tcl_phone_guard",
+					"cname": "手机卫士",
+					"def_url": "/upload/default/theme_default/icons/tp_tcl_phone_guard.png",
+					"url": "",
+					"position": 14
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_tcl_updates",
+					"cname": "更新",
+					"def_url": "/upload/default/theme_default/icons/tp_tcl_updates.png",
+					"url": "",
+					"position": 15
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_tcl_alcatel_support",
+					"cname": "拉美版用户服务",
+					"def_url": "/upload/default/theme_default/icons/tp_tcl_alcatel_support.png",
+					"url": "",
+					"position": 16
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_tcl_vr_store",
+					"cname": "VR商店",
+					"def_url": "/upload/default/theme_default/icons/tp_tcl_vr_store.png",
+					"url": "",
+					"position": 17
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_tcl_vr_home",
+					"cname": "VR桌面",
+					"def_url": "/upload/default/theme_default/icons/tp_tcl_vr_home.png",
+					"url": "",
+					"position": 18
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_tcl_turbo_browser",
+					"cname": "浏览器",
+					"def_url": "/upload/default/theme_default/icons/tp_tcl_turbo_browser.png",
+					"url": "",
+					"position": 19
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_facebook",
+					"cname": "facebook",
+					"def_url": "/upload/default/theme_default/icons/tp_facebook.png",
+					"url": "",
+					"position": 23
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_twitter",
+					"cname": "twitter",
+					"def_url": "/upload/default/theme_default/icons/tp_twitter.png",
+					"url": "",
+					"position": 24
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_whatsapp",
+					"cname": "whatsapp",
+					"def_url": "/upload/default/theme_default/icons/tp_whatsapp.png",
+					"url": "",
+					"position": 25
+				},
+				{
+					"cate_id": "8",
+					"type": "2",
+					"rule": "img_icon",
+					"ename": "tp_instagram",
+					"cname": "instagram",
+					"def_url": "/upload/default/theme_default/icons/tp_instagram.png",
+					"url": "",
+					"position": 26
+				},
+				{
+					"cate_id": "9",
+					"type": "3",
+					"rule": "img_icon",
+					"ename": "tp_merge_icon",
+					"cname": "合成图标",
+					"def_url": "/upload/default/theme_default/tmp/tp_merge_icon.png",
+					"url": "",
+					"position": 1
+				},
+				{
+					"cate_id": "9",
+					"type": "3",
+					"rule": "img_icon",
+					"ename": "tp_icon_bg",
+					"cname": "背板",
+					"def_url": "/upload/default/theme_default/icons/tp_icon_bg.png",
+					"url": "",
+					"position": 2
+				},
+				{
+					"cate_id": "9",
+					"type": "3",
+					"rule": "img_icon",
+					"ename": "tp_icon_eg",
+					"cname": "第三方图标",
+					"def_url": "/upload/default/theme_default/tmp/tp_icon_eg.png",
+					"url": "",
+					"position": 2
+				},
+				{
+					"cate_id": "9",
+					"type": "3",
+					"rule": "img_icon",
+					"ename": "tp_icon_template",
+					"cname": "轮廓",
+					"def_url": "/upload/default/theme_default/icons/tp_icon_template.png",
+					"url": "",
+					"position": 2
+				},
+				{
+					"cate_id": "9",
+					"type": "3",
+					"rule": "img_icon",
+					"ename": "tp_icon_fg",
+					"cname": "前景",
+					"def_url": "/upload/default/theme_default/icons/tp_icon_fg.png",
+					"url": "",
+					"position": 2
+				},
+				{
+					"cate_id": "9",
+					"type": "10",
+					"rule": "img_icon",
+					"ename": "tp_folder_bg",
+					"cname": "文件夹底板",
+					"def_url": "/upload/default/theme_default/icons/tp_folder_bg.png",
+					"url": "",
+					"position": 2
+				},
+				{
+					"cate_id": "9",
+					"type": "10",
+					"rule": "img_icon",
+					"ename": "tp_merge_folder_icon",
+					"cname": "文件夹合成图标",
+					"def_url": "/upload/default/theme_default/tmp/tp_merge_folder_icon.png",
+					"url": "",
+					"position": 2
+				},
+				{
+					"cate_id": "11",
+					"type": "9",
+					"rule": "img_preview",
+					"ename": "tp_preview_0",
+					"cname": "主题封面",
+					"def_url": "/upload/default/theme_default/preview/tp_preview_0.jpg",
+					"url": "",
+					"position": 1
+				},
+				{
+					"cate_id": "11",
+					"type": "9",
+					"rule": "img_preview",
+					"ename": "tp_preview_1",
+					"cname": "Home屏预览图",
+					"def_url": "/upload/default/theme_default/preview/tp_preview_1.jpg",
+					"url": "",
+					"position": 2
+				},
+				{
+					"cate_id": "11",
+					"type": "9",
+					"rule": "img_preview",
+					"ename": "tp_preview_2",
+					"cname": "第二屏预览图",
+					"def_url": "/upload/default/theme_default/preview/tp_preview_2.jpg",
+					"url": "",
+					"position": 3
+				},
+				{
+					"cate_id": "11",
+					"type": "9",
+					"rule": "img_preview",
+					"ename": "tp_preview_3",
+					"cname": "第三屏预览图",
+					"def_url": "/upload/default/theme_default/preview/tp_preview_3.jpg",
+					"url": "",
+					"position": 4
+				},
+				{
+					"cate_id": "11",
+					"type": "9",
+					"rule": "img_preview",
+					"ename": "tp_preview_4",
+					"cname": "第四屏预览图",
+					"def_url": "/upload/default/theme_default/preview/tp_preview_4.jpg",
+					"url": "",
+					"position": 5
+				},
+				{
+					"cate_id": "11",
+					"type": "13",
+					"rule": "img_name_logo",
+					"ename": "tp_theme_name",
+					"cname": "主题英文名",
+					"def_url": "/upload/default/theme_default/preview/tp_theme_name.png",
+					"url": "",
+					"position": 8
+				},
+				{
+					"cate_id": "12",
+					"type": "12",
+					"rule": "text_color",
+					"ename": "tp_icon_text_color",
+					"cname": "Desktop text",
+					"def_val": "#FFF8F8F8",
+					"val": ""
+				},
+				{
+					"cate_id": "15",
+					"type": "11",
+					"rule": "img_banner",
+					"ename": "tp_banner",
+					"cname": "banner",
+					"def_url": "/upload/default/theme_default/tmp/tp_banner.jpg",
+					"url": "",
+					"position": 1
+				}
+			],
+			"validate": {
+				"img_wallpaper": {
+					"format": [
+						"jpg"
+					],
+					"size": 4,
+					"byte": 500
+				},
+				"img_icon": {
+					"format": [
+						"png"
+					],
+					"size": [
+						1,
+						2,
+						3
+					],
+					"byte": 50
+				},
+				"img_preview": {
+					"format": [
+						"jpg"
+					],
+					"size": 8,
+					"byte": 400
+				},
+				"img_banner": {
+					"format": [
+						"jpg"
+					],
+					"size": 9,
+					"byte": 300
+				},
+				"img_name_logo": {
+					"format": [
+						"png"
+					],
+					"size": 9,
+					"byte": 300
+				},
+				"text_color": {
+					"range": [
+						"#000",
+						"#fff"
+					]
+				},
+				"space_icon": {
+					"range": [
+						0,
+						100
+					]
+				},
+				"num_icon": {
+					"range": [
+						1,
+						4
+					]
+				}
+			},
+			"size": {
+				"1": [
+					144,
+					144
+				],
+				"2": [
+					168,
+					168
+				],
+				"3": [
+					192,
+					192
+				],
+				"4": [
+					2160,
+					1920
+				],
+				"5": [
+					90,
+					90
+				],
+				"6": [
+					60,
+					60
+				],
+				"7": [
+					135,
+					135
+				],
+				"8": [
+					1080,
+					1920
+				],
+				"9": [
+					1080,
+					750
+				]
+			},
+			"folder_config": {
+				"2": {
+					"1": {
+						"tp_folder_top_padding": 12,
+						"tp_folder_left_padding": 12,
+						"tp_folder_right_padding": 12,
+						"tp_folder_bottom_padding": 12,
+						"tp_folder_horizontal_spacing": 2,
+						"tp_folder_vertical_spacing": 2
+					},
+					"2": {
+						"tp_folder_top_padding": 9,
+						"tp_folder_left_padding": 9,
+						"tp_folder_right_padding": 9,
+						"tp_folder_bottom_padding": 9,
+						"tp_folder_horizontal_spacing": 2,
+						"tp_folder_vertical_spacing": 2
+					},
+					"3": {
+						"tp_folder_top_padding": 6,
+						"tp_folder_left_padding": 6,
+						"tp_folder_right_padding": 6,
+						"tp_folder_bottom_padding": 6,
+						"tp_folder_horizontal_spacing": 2,
+						"tp_folder_vertical_spacing": 2
+					},
+					"4": {
+						"tp_folder_top_padding": 4,
+						"tp_folder_left_padding": 4,
+						"tp_folder_right_padding": 4,
+						"tp_folder_bottom_padding": 4,
+						"tp_folder_horizontal_spacing": 2,
+						"tp_folder_vertical_spacing": 2
+					},
+					"5": {
+						"tp_folder_top_padding": 3,
+						"tp_folder_left_padding": 3,
+						"tp_folder_right_padding": 3,
+						"tp_folder_bottom_padding": 3,
+						"tp_folder_horizontal_spacing": 2,
+						"tp_folder_vertical_spacing": 2
+					}
+				},
+				"3": {
+					"1": {
+						"tp_folder_top_padding": 13,
+						"tp_folder_left_padding": 13,
+						"tp_folder_right_padding": 13,
+						"tp_folder_bottom_padding": 13,
+						"tp_folder_horizontal_spacing": 2,
+						"tp_folder_vertical_spacing": 2
+					},
+					"2": {
+						"tp_folder_top_padding": 10,
+						"tp_folder_left_padding": 10,
+						"tp_folder_right_padding": 10,
+						"tp_folder_bottom_padding": 10,
+						"tp_folder_horizontal_spacing": 2,
+						"tp_folder_vertical_spacing": 2
+					},
+					"3": {
+						"tp_folder_top_padding": 7,
+						"tp_folder_left_padding": 7,
+						"tp_folder_right_padding": 7,
+						"tp_folder_bottom_padding": 7,
+						"tp_folder_horizontal_spacing": 2,
+						"tp_folder_vertical_spacing": 2
+					},
+					"4": {
+						"tp_folder_top_padding": 4,
+						"tp_folder_left_padding": 4,
+						"tp_folder_right_padding": 4,
+						"tp_folder_bottom_padding": 4,
+						"tp_folder_horizontal_spacing": 2,
+						"tp_folder_vertical_spacing": 2
+					},
+					"5": {
+						"tp_folder_top_padding": 2,
+						"tp_folder_left_padding": 2,
+						"tp_folder_right_padding": 2,
+						"tp_folder_bottom_padding": 2,
+						"tp_folder_horizontal_spacing": 2,
+						"tp_folder_vertical_spacing": 2
+					}
+				}
+			}
+		},
+		"cate_data": [
+			{
+				"id": "1",
+				"cate_name": "桌面",
+				"parent_id": "0",
+				"is_open": "1",
+				"create_time": "1468811554",
+				"sort": "1",
+				"module": "",
+				"icon": "home"
+			},
+			{
+				"id": "2",
+				"cate_name": "壁纸",
+				"parent_id": "1",
+				"is_open": "1",
+				"create_time": "1468811596",
+				"sort": "1",
+				"module": "",
+				"icon": "picture"
+			},
+			{
+				"id": "3",
+				"cate_name": "图标",
+				"parent_id": "1",
+				"is_open": "1",
+				"create_time": "1468811614",
+				"sort": "3",
+				"module": "",
+				"icon": "icons"
+			},
+			{
+				"id": "5",
+				"cate_name": "展示",
+				"parent_id": "1",
+				"is_open": "1",
+				"create_time": "1468811662",
+				"sort": "5",
+				"module": "",
+				"icon": "show"
+			},
+			{
+				"id": "6",
+				"cate_name": "桌面壁纸",
+				"parent_id": "2",
+				"is_open": "1",
+				"create_time": "1468811702",
+				"sort": "6",
+				"module": "DesktopBackground",
+				"icon": ""
+			},
+			{
+				"id": "7",
+				"cate_name": "系统图标",
+				"parent_id": "3",
+				"is_open": "1",
+				"create_time": "1468811726",
+				"sort": "7",
+				"module": "SystemIcon",
+				"icon": ""
+			},
+			{
+				"id": "8",
+				"cate_name": "常用图标",
+				"parent_id": "3",
+				"is_open": "1",
+				"create_time": "1468811737",
+				"sort": "8",
+				"module": "CommonIcons",
+				"icon": ""
+			},
+			{
+				"id": "9",
+				"cate_name": "图标统一化",
+				"parent_id": "3",
+				"is_open": "1",
+				"create_time": "1468811753",
+				"sort": "9",
+				"module": "OtherIcons",
+				"icon": ""
+			},
+			{
+				"id": "11",
+				"cate_name": "预览图",
+				"parent_id": "5",
+				"is_open": "1",
+				"create_time": "1468811798",
+				"sort": "12",
+				"module": "PreviewImage",
+				"icon": ""
+			},
+			{
+				"id": "13",
+				"cate_name": "文字",
+				"parent_id": "1",
+				"is_open": "1",
+				"create_time": "1476414796",
+				"sort": "2",
+				"module": "",
+				"icon": "text"
+			},
+			{
+				"id": "14",
+				"cate_name": "桌面文字",
+				"parent_id": "13",
+				"is_open": "1",
+				"create_time": "1476414860",
+				"sort": "13",
+				"module": "IconTextColor",
+				"icon": ""
+			},
+			{
+				"id": "15",
+				"cate_name": "banner图",
+				"parent_id": "5",
+				"is_open": "1",
+				"create_time": "1484289833",
+				"sort": "11",
+				"module": "ImageBanner",
+				"icon": ""
+			}
+		],
+		"theme_id": 676,
+		"theme_name": "1",
+		"size": "2",
+		"sn": "cbba3ec0f0c24d16cfaa76a3b339ddb0",
+		"author": "22",
+		"package_count": 0,
+		"first_save": true,
+		"folder_column_row": 2,
+		"folder_config_num": 3
+	}
+}
