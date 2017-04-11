@@ -1,0 +1,22 @@
+{
+  "name": "algorithm-for-javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cnwhy/Algorithm-for-Javascript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cnwhy/Algorithm-for-Javascript/issues"
+  },
+  "homepage": "https://github.com/cnwhy/Algorithm-for-Javascript#readme",
+  "dependencies": {
+    "console.table": "^0.8.0"
+  }
+}
