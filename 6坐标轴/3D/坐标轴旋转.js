@@ -25,6 +25,13 @@ function rotateX(angle){
 		[0,cosv,sinv],
 		[0,-sinv,cosv]
 	]
+	/*
+	[
+		[1,0,0],
+		[0,cosv,-sinv],
+		[0,sinv,cosv]
+	]
+	*/
 }
 
 /**
@@ -42,6 +49,13 @@ function rotateY(angle){
 		[0,1,0],
 		[sinv,0,cosv]
 	]
+	/*
+	[
+		[cosv,0,sinv],
+		[0,1,0],
+		[-sinv,0,cosv]
+	]
+	*/
 }
 
 /**
@@ -59,12 +73,31 @@ function rotateZ(angle){
 		[-sinv,cosv,0],
 		[0,0,1]
 	]
+	/*
+	[
+		[cosv,-sinv,0],
+		[sinv,cosv,0],
+		[0,0,1]
+	]
+	*/
 }
 
 function getMatrix3d(m){
-	m[0].push(0);
-	m[1].push(0);
-	m[2].push(0);
-	m[3]=[0,0,0,1];
-	return m;
+	var args = [];
+	for(var n=0; n<4; n++){
+		if(n == 3){
+			if(m[3] == undefined){
+				m[3]=[0,0,0,1];
+			}
+			if(m[3][4] == undefined) m[3][4] = 1;
+		}else if(m[n][4] == undefined){
+			m[n][4] = 0;
+		}
+	}
+	for(var i=0; i<4; i++){
+		for(var k=0; k<4; i++){
+			args.push(m[k][i]);
+		}
+	}
+	return args;
 }
