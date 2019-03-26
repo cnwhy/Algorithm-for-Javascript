@@ -1,3 +1,4 @@
+// es6 Proxy 测试
 var fn = function(){
     console.log('run fn');
     return 111111;
@@ -108,43 +109,14 @@ var handler = {
     
 }
 
+function abc(a){
+    console.log(a);
+    return Promise.resolve(a);
+}
 
-// var fn_ = new Proxy(fn,handler);
+var _abc = new Proxy(abc,handler);
 
-// console.log(fn_());
-// fn_.abc = 'abc';
-// console.log(fn_.abc);
-// fn_.abc = '123'
-//console.log(fn_.prototype.abc);
-//console.log('abc' in fn_);
-//console.log('aaa' in fn_);
-//for(var k in fn_){console.log(k)}
+_abc(1);
 
-// var f1 = new fn();
-// f1.getname();
 
-// var f2 = new fn_();
-// f2.getname();
-//Object.defineProperty(fn_,'def',{value:'def'});
-//console.log(fn_.def)
 
-var arr_ = [1,2,3]
-var arr = new Proxy(arr_,handler);
-
-console.log(arr.length)
-
-console.log('--set--')
-arr[3] = 0
-console.log('--set end--')
-return;
-
-console.log('--push--')
-arr.push(0);
-console.log('--push end--')
-
-console.log('--set--')
-arr.length = 0
-console.log('--set end--')
-
-console.log('------------')
-console.log(arr_);
