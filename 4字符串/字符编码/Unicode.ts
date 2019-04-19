@@ -134,7 +134,7 @@ function utf8Decode(buffer: ArrayBuffer | Uint8Array): string {
 				if (w < 1) throw 'code err';
 				cs = cs.reverse();
 				for (let k = 0; k < cs.length; k++) {
-					let _c = cs[i] & 0x3f;
+					let _c = cs[k] & 0x3f;
 					code |= _c << (k * 6);
 				}
 				code |= (c0 & (2 ** w - 1)) << (cs.length * 6);
