@@ -1,25 +1,36 @@
 import {utf8Encode, utf8Decode} from './Unicode'
 
 const table = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.split('');
+const getV = function(char): number {
+	if (char == '=') return 0;
+	let index = table.indexOf(char);
+	if (index == -1) throw new Error(`"${char}" not base64 char`);
+	return index;
+};
+/**
+ * 判断是否为TypeArray对像
+ */
+function isTypeArray(obj: any) {
+	return (
+		obj &&
+		obj.buffer instanceof ArrayBuffer &&
+		typeof obj.byteOffset === 'number' &&
+		typeof obj.byteLength === 'number'
+	);
+}
 
 /**
  * base64编码
  * @param u8arr {ArrayBuffer | Uint8Array | string}
  */
-function encode(u8arr: ArrayBuffer | Uint8Array | string):string {
+function encode(u8arr: ArrayBuffer | Uint8Array | string | any):string {
 	let _u8arr: { length: number };
-	if (u8arr instanceof ArrayBuffer) {
+	if (isTypeArray(u8arr)) {
+		_u8arr = new Uint8Array(u8arr.buffer,u8arr.byteOffset,u8arr.byteLength)
+	} else if (u8arr instanceof ArrayBuffer || Array.isArray(u8arr)) {
 		_u8arr = new Uint8Array(u8arr);
-	} else if (u8arr['buffer'] && u8arr['buffer'] instanceof ArrayBuffer) {
-		_u8arr = new Uint8Array(u8arr['buffer']);
-	} else if (Array.isArray(u8arr)) {
-		_u8arr = new Uint8Array(new Uint8Array(u8arr).buffer);
-	}else if(typeof u8arr === 'string'){
-		_u8arr = utf8Encode(u8arr);
-	}else if(Array.isArray(u8arr)){
-		_u8arr = new Uint8Array(u8arr)
 	} else {
-		return '';
+		_u8arr = utf8Encode(u8arr.toString());
 	}
 	let bitLength = Math.ceil((_u8arr.length * 8) / 6);
 	let str64Length = Math.ceil(_u8arr.length / 3) * 4;
@@ -47,16 +58,18 @@ function encode(u8arr: ArrayBuffer | Uint8Array | string):string {
  */
 function decode(base64Str: string): Uint8Array {
 	base64Str = base64Str.trim();
-	if (base64Str.length % 4) throw new TypeError('传入的参数不是有效的base64字符串');
-	base64Str = base64Str.replace(/=*$/, '');
-	let bitLength = Math.floor((base64Str.length * 6) / 8);
+	let _str64 = base64Str.replace(/=*$/, '');
+	let mc4 = _str64.length % 4;
+	if (mc4 === 1) throw new TypeError('The parameter is not a base64 string!');
+	let bitLength = Math.floor((_str64.length * 6) / 8);
+	_str64 += mc4 ? (mc4 === 2 ? 'AA' : 'A') : '';
 	let buffer = new Uint8Array(bitLength);
 	let index = 0;
 	for (let i = 0; i < base64Str.length; ) {
-		let c0 = table.indexOf(base64Str.charAt(i++));
-		let c1 = table.indexOf(base64Str.charAt(i++));
-		let c2 = table.indexOf(base64Str.charAt(i++));
-		let c3 = table.indexOf(base64Str.charAt(i++));
+		let c0 = getV(base64Str.charAt(i++));
+		let c1 = getV(base64Str.charAt(i++));
+		let c2 = getV(base64Str.charAt(i++));
+		let c3 = getV(base64Str.charAt(i++));
 		buffer[index++] = (c0 << 2) | (c1 >> 4);
 		buffer[index++] = (c1 << 4) | (c2 >> 2);
 		buffer[index++] = (c2 << 6) | c3;

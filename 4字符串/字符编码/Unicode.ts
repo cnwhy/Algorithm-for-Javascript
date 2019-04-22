@@ -25,7 +25,7 @@ function u2utf8(codePoint: number): Uint8Array {
 }
 
 /**
- * Unicode Utf8 编码
+ * Unicode Utf16 编码 (字节序默认)
  *
  * @param {number} codePoint Unicode 码点
  * @returns {Uint8Array} 返回字节数据
@@ -40,7 +40,24 @@ function u2utf16(codePoint: number): Uint8Array {
 	}
 }
 
+/**
+ * 判断是否为TypeArray对像
+ */
+function isTypeArray(obj: any) {
+	return (
+		obj &&
+		obj.buffer instanceof ArrayBuffer &&
+		typeof obj.byteOffset === 'number' &&
+		typeof obj.byteLength === 'number'
+	);
+}
+
+/**
+ * 字符串 UCS2/UTF16 编码
+ * @param str
+ */
 function ucs2Encode(str: string) {
+	//javascript 字符串本身是 UCS2 直接转出即可
 	let buffer = new Uint16Array(str.length);
 	for (var i = 0; i < str.length; i++) {
 		buffer[i] = str.charCodeAt(i);
@@ -48,13 +65,18 @@ function ucs2Encode(str: string) {
 	return new Uint8Array(buffer.buffer);
 }
 
+/**
+ * UCS2/UTF16 编码 转字符串
+ * @param u8arr
+ */
 function ucs2Decode(u8arr: ArrayBuffer | Uint8Array) {
 	let u16: { length: number };
 	if (u8arr instanceof ArrayBuffer) {
 		u16 = new Uint16Array(u8arr);
-	} else if (u8arr.buffer instanceof ArrayBuffer) {
-		u16 = new Uint16Array(u8arr.buffer);
+	} else if (isTypeArray(u8arr)) {
+		u16 = new Uint16Array(u8arr.buffer, u8arr.byteOffset, u8arr.byteLength);
 	} else if (Array.isArray(u8arr)) {
+		// 先转字节数组 , 防超出一个字节的值
 		u16 = new Uint16Array(new Uint8Array(u8arr).buffer);
 	} else {
 		return '';
@@ -66,68 +88,69 @@ function ucs2Decode(u8arr: ArrayBuffer | Uint8Array) {
 	return str;
 }
 
+/**
+ * 字符串 UTF8 编码
+ * @param str
+ */
 function utf8Encode(str) {
-	var utf8 = [];
+	let utf8 = [];
+	let codePoints = [];
+
+	//先转为Unicode
 	for (var i = 0; i < str.length; i++) {
-		var charcode = str.charCodeAt(i);
-		if (charcode < 0x80) {
-			utf8.push(charcode);
-		} else if (charcode < 0x800) {
-			utf8.push(0xc0 | (charcode >> 6), 0x80 | (charcode & 0x3f));
-		} else if (charcode < 0xd800 || charcode >= 0xe000) {
-			utf8.push(0xe0 | (charcode >> 12), 0x80 | ((charcode >> 6) & 0x3f), 0x80 | (charcode & 0x3f));
-		}
-		// surrogate pair (4字节字符)
-		else {
+		let code = str.charCodeAt(i);
+		let cod1;
+		if (code < 0xd800) {
+			codePoints.push(code);
+		} else if (code < 0xdc00 && (cod1 = str.charCodeAt(i + 1)) >= 0xdc00 && cod1 < 0xe000) {
 			i++;
-			// UTF-16 encodes 0x10000-0x10FFFF by
-			// subtracting 0x10000 and splitting the
-			// 20 bits of 0x0-0xFFFFF into two halves
-			charcode = 0x10000 + (((charcode & 0x3ff) << 10) | (str.charCodeAt(i) & 0x3ff));
-			utf8.push(
-				0xf0 | (charcode >> 18),
-				0x80 | ((charcode >> 12) & 0x3f),
-				0x80 | ((charcode >> 6) & 0x3f),
-				0x80 | (charcode & 0x3f)
-			);
+			codePoints.push(0x10000 + (((code & 0x3ff) << 10) | (cod1 & 0x3ff)));
+		} else {
+			//编码不正常处理
+			// 1. 不处理, 转base64, 可无损转回原始字符串
+			codePoints.push(code);
+
+			// 2. 处理为占位符 , new Buffer(str) 默认认处理方式
+			// codePoints.push(0xfffd) //处理为 �
 		}
 	}
+
+	codePoints.forEach(v => {
+		utf8.push.apply(utf8, Array.from(u2utf8(v)));
+	});
 	return new Uint8Array(utf8);
 }
-
-const noCode = '\ufffd';
-function utf8Decode(buffer: ArrayBuffer | Uint8Array): string {
-	let dv: Uint8Array;
-	if (buffer instanceof ArrayBuffer) {
-		dv = new Uint8Array(buffer);
-	} else if (buffer.buffer instanceof ArrayBuffer) {
-		dv = new Uint8Array(buffer.buffer);
-	} else if (Array.isArray(buffer)) {
-		dv = new Uint8Array(buffer);
+/**
+ * UTF8 编码 转字符串
+ * @param str
+ */
+function utf8Decode(buffer: ArrayBuffer | Uint8Array | any): string {
+	let u8: Uint8Array;
+	if (isTypeArray(buffer)) {
+		u8 = new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength);
+	} else if (buffer instanceof ArrayBuffer || Array.isArray(buffer)) {
+		u8 = new Uint8Array(buffer);
 	} else {
 		return '';
 	}
 	let str = '';
-	let codePoints = []
 	function setChar(i): number {
 		let _i = i;
-		let c0 = dv[_i++];
+		let c0 = u8[_i++];
 		try {
 			if (c0 < 0x80) {
-				// str += String.fromCharCode(c0);
-				codePoints.push(c0);
+				str += String.fromCharCode(c0);
 				return _i;
 			} else if (c0 < 0xc2) {
-				//  最小双字节 `u+0080` 转第一位最小值是 1100 0010 , 0000 0000
-				// str += noCode;
+				//  多字节 `u+0080` 转第一位最小值是 1100 0010 , 0000 0000
 				throw 'code err';
 			} else {
 				let mk = 0xc0;
 				let w = 5;
-				let cs = [dv[_i++]];
+				let cs = [u8[_i++]];
 				let code = 0;
 				while (c0 >= (mk | (2 ** w))) {
-					cs.push(dv[_i++]);
+					cs.push(u8[_i++]);
 					mk = mk | (2 ** w);
 					w--;
 				}
@@ -138,35 +161,25 @@ function utf8Decode(buffer: ArrayBuffer | Uint8Array): string {
 					code |= _c << (k * 6);
 				}
 				code |= (c0 & (2 ** w - 1)) << (cs.length * 6);
-				// console.log(code);
-				codePoints.push(code)
-				// if (code > 0x10000) {
-				// 	str += String.fromCharCode(code >> 16);
-				// }
-				// str += String.fromCharCode(code & 0xffff);
+				if (code > 0x10000) {
+					let _code = code - 0x10000;
+					str += String.fromCharCode(0xd800 | (_code >> 10));
+					str += String.fromCharCode(0xdc00 | (_code & 0x3ff));
+				} else {
+					str += String.fromCharCode(code & 0xffff);
+				}
 				return _i;
 			}
 		} catch (e) {
-			// str += noCode;
-			codePoints.push(c0);
-			return i++;
+			str += String.fromCharCode(c0);
+			return i + 1;
 		}
 	}
 	let index = 0;
-	while (index < dv.length) {
+	while (index < u8.length) {
 		index = setChar(index);
-	}
-	for(let i=0; i<codePoints.length; i++){
-		str += String.fromCodePoint(codePoints[i]);
 	}
 	return str;
 }
 
-
-
-export {
-	utf8Encode,
-	utf8Decode,
-	ucs2Encode,
-	ucs2Decode
-}
+export { u2utf8, u2utf16, utf8Encode, utf8Decode, ucs2Encode, ucs2Decode };
