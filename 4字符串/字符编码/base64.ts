@@ -1,4 +1,4 @@
-import {utf8Encode, utf8Decode} from './Unicode'
+import { utf8Encode, utf8Decode, ucs2Encode, ucs2Decode } from './Unicode';
 
 const table = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.split('');
 const getV = function(char): number {
@@ -22,15 +22,17 @@ function isTypeArray(obj: any) {
 /**
  * base64编码
  * @param u8arr {ArrayBuffer | Uint8Array | string}
+ * @param encoding {string} 字符串编码方式 utf8 | utf16le/ucs2
  */
-function encode(u8arr: ArrayBuffer | Uint8Array | string | any):string {
+function encode(str: string, encoding?: string): string;
+function encode(u8arr: ArrayBuffer | Uint8Array | string | any, encoding?: string): string {
 	let _u8arr: { length: number };
 	if (isTypeArray(u8arr)) {
-		_u8arr = new Uint8Array(u8arr.buffer,u8arr.byteOffset,u8arr.byteLength)
+		_u8arr = new Uint8Array(u8arr.buffer.slice(u8arr.byteOffset, u8arr.byteLength));
 	} else if (u8arr instanceof ArrayBuffer || Array.isArray(u8arr)) {
 		_u8arr = new Uint8Array(u8arr);
 	} else {
-		_u8arr = utf8Encode(u8arr.toString());
+		_u8arr = encoding == 'utf16le' ||  encoding == 'ucs2' ? ucs2Encode(u8arr.toString()) : utf8Encode(u8arr.toString());
 	}
 	let bitLength = Math.ceil((_u8arr.length * 8) / 6);
 	let str64Length = Math.ceil(_u8arr.length / 3) * 4;
@@ -77,13 +79,14 @@ function decode(base64Str: string): Uint8Array {
 	return buffer;
 }
 
-function decodeIsUtf8(base64Str: string):string {
+function decodeIsUtf8(base64Str: string): string {
 	var buffer = decode(base64Str);
 	return utf8Decode(buffer);
 }
 
-export {
-	encode,
-	decode,
-	decodeIsUtf8
+function decodeIsUcs2(base64Str: string): string {
+	var buffer = decode(base64Str);
+	return ucs2Decode(buffer);
 }
+
+export { encode, decode, decodeIsUtf8, decodeIsUcs2 };
