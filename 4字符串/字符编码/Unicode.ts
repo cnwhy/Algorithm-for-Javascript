@@ -10,9 +10,10 @@ function u2utf8(codePoint: number): Uint8Array {
 	}
 	if (codePoint > 0x7fffffff) throw new SyntaxError('Undefined Unicode code-point');
 	let n = 11;
-	while (codePoint > 2 ** n) {
+	while (codePoint >= 2 ** n) {
 		n += 5;
 	}
+	
 	let length = Math.ceil(n / 6);
 	let u8 = new Uint8Array(length);
 	let i = 0;

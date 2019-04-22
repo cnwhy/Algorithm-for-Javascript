@@ -12,6 +12,7 @@
     "power-assert": "^1.4.4"
   },
   "devDependencies": {
+    "@types/node": "^11.13.6",
     "mocha": "^4.0.1"
   },
   "scripts": {
