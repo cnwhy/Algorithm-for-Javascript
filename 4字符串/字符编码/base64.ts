@@ -2,7 +2,6 @@ import { utf8Encode, utf8Decode, ucs2Encode, ucs2Decode } from './Unicode';
 
 const table = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.split('');
 const getV = function(char): number {
-	if (char == '=') return 0;
 	let index = table.indexOf(char);
 	if (index == -1) throw new Error(`"${char}" not base64 char`);
 	return index;
@@ -68,10 +67,10 @@ function decode(base64Str: string): Uint8Array {
 	let buffer = new Uint8Array(bitLength);
 	let index = 0;
 	for (let i = 0; i < base64Str.length; ) {
-		let c0 = getV(base64Str.charAt(i++));
-		let c1 = getV(base64Str.charAt(i++));
-		let c2 = getV(base64Str.charAt(i++));
-		let c3 = getV(base64Str.charAt(i++));
+		let c0 = getV(_str64.charAt(i++));
+		let c1 = getV(_str64.charAt(i++));
+		let c2 = getV(_str64.charAt(i++));
+		let c3 = getV(_str64.charAt(i++));
 		buffer[index++] = (c0 << 2) | (c1 >> 4);
 		buffer[index++] = (c1 << 4) | (c2 >> 2);
 		buffer[index++] = (c2 << 6) | c3;
