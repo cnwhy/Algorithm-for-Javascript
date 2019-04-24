@@ -75,7 +75,7 @@ function ucs2Decode(u8arr: ArrayBuffer | Uint8Array) {
 	if (u8arr instanceof ArrayBuffer) {
 		u16 = new Uint16Array(u8arr);
 	} else if (isTypeArray(u8arr)) {
-		u16 = new Uint16Array(u8arr.buffer.slice(u8arr.byteOffset, u8arr.byteLength));
+		u16 = new Uint16Array(u8arr.buffer.slice(u8arr.byteOffset, u8arr.byteOffset + u8arr.byteLength));
 	} else if (Array.isArray(u8arr)) {
 		// 先转字节数组 , 防超出一个字节的值
 		u16 = new Uint16Array(new Uint8Array(u8arr).buffer);
@@ -128,7 +128,7 @@ function utf8Encode(str) {
 function utf8Decode(buffer: ArrayBuffer | Uint8Array | any): string {
 	let u8: Uint8Array;
 	if (isTypeArray(buffer)) {
-		u8 = new Uint8Array(buffer.buffer.slice(buffer.byteOffset, buffer.byteLength));
+		u8 = new Uint8Array(buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength));
 	} else if (buffer instanceof ArrayBuffer || Array.isArray(buffer)) {
 		u8 = new Uint8Array(buffer);
 	} else {
